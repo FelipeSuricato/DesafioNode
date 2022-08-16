@@ -1,5 +1,5 @@
 const express = require("express");
-const db = require("../StartNode/database");
+const db = require("../WeesuDesafio/database");
 
 const app = express();
 app.use(express.json());
