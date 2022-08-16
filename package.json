@@ -4,12 +4,14 @@
   "description": "Primeiro projeto nodeJS",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon mcsPost.js"
   },
   "author": "Felipe Arantes",
   "license": "MIT",
   "dependencies": {
     "express": "^4.18.1",
-    "nodemon": "^2.0.19"
+    "node-postgres": "^0.6.2",
+    "nodemon": "^2.0.19",
+    "pg": "^8.7.3"
   }
 }
