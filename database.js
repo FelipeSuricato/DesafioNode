@@ -5,7 +5,7 @@ const pool = new Pool({
 });
 
 pool.on('connect', () => {
-  console.log('Base de Dados conectado com sucesso!');
+  console.log('Interação com a base de dados.');
 });
 
 module.exports = {

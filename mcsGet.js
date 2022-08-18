@@ -1,44 +1,16 @@
-const http = require('http');
-const axios = require('axios');
+const axios = require('axios').default;
 
-axios.get('https://api.mercadolibre.com/items/MLB1046680598')
-  .then(function (res) {
-    console.log(res);
-  });
+addItem('https://api.mercadolibre.com/items/MLB1046680598');
 
-https.get('https://api.mercadolibre.com/items/MLB1046680598', (resp) => {
-  let data = '';
-  resp.on('data', (dados) => {
-    data += dados;
-  });
-  resp.on('end', () => {    
-    const dataPost = JSON.stringify(data);    
-    const options = {
-      hostname: 'localhost',
-      port: 4002,
-      path: '/item',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(dataPost)
-      }
-    };    
-    const req = http.request(options, (res) => {
-      res.setEncoding("utf-8");
-      let pData = '';
-      res.on('pData', (d) => {
-        pData += d;
-      });
-      res.on('end', () => {
-        console.log('Ended! Data:', pData);
-      });
-    });    
-    req.on('error', error => {
-      console.error(error);
-    });    
-    req.write(dataPost);
-    req.end();
-  });
-}).on("error", (err) => {
-  console.log("Error: " + err.message);
-});
+async function addItem(url) {
+  const getData = await axios.get(url);
+  axios.post('http://localhost:4002/item', getData.data)
+    .then(function (response) {
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      let showLog = ("Erro:");
+      showLog =+ error;
+      console.log(showLog);
+    });
+};

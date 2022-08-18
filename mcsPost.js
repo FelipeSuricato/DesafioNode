@@ -1,5 +1,5 @@
 const express = require("express");
-const db = require("../WeesuDesafio/database");
+const db = require("./database");
 
 const app = express();
 app.use(express.json());
@@ -20,5 +20,9 @@ app.get("/item/:id", async (req, res) => {
   const { id } = req.params;
   const response = await db.query('SELECT * FROM mlb_json WHERE jsonId = $1', [id]);
   res.status(200).send(response.rows);
+});
+app.get("/status", async (req, res) => {
+  //buscar no bd um registro e retornar    
+  res.status(200).send("{\"status\": \"Ativo\"}");
 });
 app.listen(4002, () => console.log("Server started!"));
