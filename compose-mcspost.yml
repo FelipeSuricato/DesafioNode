@@ -1,0 +1,7 @@
+version: "16"
+services:  
+  node:
+    image: node:lts-alpine
+    ports:
+      - "4002:4002"    
+    container_name: mcspost
