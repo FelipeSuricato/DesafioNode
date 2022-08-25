@@ -4,7 +4,7 @@ addItem('https://api.mercadolibre.com/items/MLB1046680598');
 
 async function addItem(url) {
   const getData = await axios.get(url);
-  axios.post('http://localhost:4002/item', getData.data)
+  axios.post('http://db:4002/item', getData.data)
     .then(function (response) {
       console.log(response.data);
     })
