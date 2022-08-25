@@ -1,7 +1,30 @@
-version: "16"
-services:  
-  node:
-    image: node:lts-alpine
+version: "3"
+services:
+  db:
+    container_name: db
+    image: postgres:14-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
     ports:
-      - "4002:4002"    
+      - "4000:5432"
+    networks:
+      - ponte-db
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+  nodejs:
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: mcspost
+    ports:
+      - "4002:4002"
+    networks:
+      - ponte-db
+    command: "npm run dev"
+    depends_on:
+      - db
+networks:
+  ponte-db:
+    driver: bridge

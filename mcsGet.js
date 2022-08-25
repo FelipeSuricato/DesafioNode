@@ -10,7 +10,7 @@ async function addItem(url) {
     })
     .catch(function (error) {
       let showLog = ("Erro:");
-      showLog =+ error;
+      showLog = + error;
       console.log(showLog);
     });
 };

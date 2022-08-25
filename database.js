@@ -1,7 +1,11 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  connectionString: "postgres://postgres:weesu250m@localhost:5432/baseDW"
+  user: "postgres",
+  password: "123456",  
+  host: "db",
+  port: 5432,
+  database: "desafio"
 });
 
 pool.on('connect', () => {
